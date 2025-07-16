@@ -86,7 +86,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation("org.jetbrains.compose.material:material-icons-core:1.7.3")
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
-//            implementation("io.github.aakira:napier:2.7.1")
             implementation("io.github.oshai:kotlin-logging:7.0.7")
             implementation("app.cash.sqldelight:coroutines-extensions:2.1.0")
             implementation("org.kodein.di:kodein-di-framework-compose:7.26.1")

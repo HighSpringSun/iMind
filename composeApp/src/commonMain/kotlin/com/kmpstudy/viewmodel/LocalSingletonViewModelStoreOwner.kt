@@ -1,4 +1,4 @@
-package com.mywf.viewmodel
+package com.kmpstudy.viewmodel
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.HasDefaultViewModelProviderFactory
@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 
@@ -32,7 +33,7 @@ inline fun <reified VM : ViewModel> singleViewModel(
     key: String? = null,
     noinline initializer: CreationExtras.() -> VM
 ): VM =
-    androidx.lifecycle.viewmodel.compose.viewModel(
+    viewModel(
         VM::class,
         viewModelStoreOwner,
         key,

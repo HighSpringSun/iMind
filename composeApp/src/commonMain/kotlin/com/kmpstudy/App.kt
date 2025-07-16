@@ -16,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.kmpstudy.ui.page.MainPage
 import com.kmpstudy.ui.page.SearchPage
 import com.kmpstudy.di.di
-import com.mywf.ui.theme.AppTheme
+import com.kmpstudy.ui.theme.AppTheme
 import org.kodein.di.compose.withDI
 
 val LocalDrawerState = compositionLocalOf<DrawerState> { error("No DrawerState provided") }
