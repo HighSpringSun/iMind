@@ -1,0 +1,33 @@
+import kotlin.Int;
+import kotlin.time.Instant;
+
+
+CREATE TABLE Record (
+  id INTEGER AS Int PRIMARY KEY AUTOINCREMENT,  -- 自增的 ID，作为主键
+  content TEXT NOT NULL,              -- 内容字段，TEXT 类型
+  createAt INTEGER  AS Instant NOT NULL, -- 存储日期和时间，默认当前时间
+  editAt INTEGER AS Instant NOT NULL
+);
+
+
+getAllRecordByCreateAtDESC:
+SELECT * FROM Record ORDER BY createAt DESC ;
+
+getAllRecordByCreateAtASC:
+SELECT * FROM Record ORDER BY createAt ASC ;
+
+getAllRecordByEditAtDESC:
+SELECT * FROM Record ORDER BY editAt DESC ;
+
+getAllRecordByEditAtASC:
+SELECT * FROM Record ORDER BY editAt ASC ;
+
+insertRecord:
+INSERT INTO Record(content, createAt, editAt)
+VALUES ?;
+
+deleteRecord:
+DELETE FROM Record WHERE Record.id == ?;
+
+deleteAllRecord:
+DELETE FROM Record;

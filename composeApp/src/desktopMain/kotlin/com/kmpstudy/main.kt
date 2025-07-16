@@ -8,6 +8,6 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = "iMind",
     ) {
-        App()
+        DesktopApp()
     }
 }

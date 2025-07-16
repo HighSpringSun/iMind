@@ -1,44 +1,95 @@
 package com.kmpstudy
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.kmpstudy.ui.page.MainPage
+import com.kmpstudy.ui.page.SearchPage
+import com.kmpstudy.di.di
+import com.mywf.ui.theme.AppTheme
+import org.kodein.di.compose.withDI
 
-import imind.composeapp.generated.resources.Res
-import imind.composeapp.generated.resources.compose_multiplatform
+val LocalDrawerState = compositionLocalOf<DrawerState> { error("No DrawerState provided") }
+val LocalNavController = compositionLocalOf<NavController> { error("Not provided") }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-@Preview
-fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
+fun App() = withDI(di) {
+    AppTheme {
+        SharedTransitionLayout {
+            val navController = rememberNavController()
+            CompositionLocalProvider(
+                LocalNavController provides navController,
+                LocalDrawerState provides DrawerState(initialValue = DrawerValue.Closed)
+            ) {
+                NavHost(
+                    navController = navController,
+                    startDestination = "MainPage"
+                ) {
+                    composable(
+                        "MainPage",
+                        exitTransition = {
+                            fadeOut()
+                        },
+                        popEnterTransition = {
+                            fadeIn()
+                        }
+                    ) {
+                        MainPage(
+                            this@SharedTransitionLayout,
+                            this@composable
+                        )
+                    }
+                    composable(
+                        "SearchPage",
+                        enterTransition = {
+                            fadeIn()
+                        },
+                        exitTransition = {
+                            fadeOut()
+                        },
+                        popExitTransition = {
+                            fadeOut()
+                        }
+                    ) {
+                        SearchPage(
+                            this@SharedTransitionLayout,
+                            this@composable
+                        )
+                    }
                 }
             }
         }
     }
+}
+
+@Composable
+fun AndroidApp() {
+    App()
+}
+
+@Composable
+fun IosApp() {
+    App()
+}
+
+@Composable
+fun DesktopApp() {
+    App()
+}
+
+
+@Composable
+fun WebApp() {
+    App()
 }
