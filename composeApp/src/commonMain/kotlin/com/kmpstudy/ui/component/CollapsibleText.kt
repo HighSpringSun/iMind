@@ -124,11 +124,12 @@ fun CollapsibleText(
 
             Text(
                 text = record.editAt.format(),
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium,
+//                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+//                fontWeight = FontWeight.Medium,
                 lineHeight = 24.sp,
                 letterSpacing = (-0.3).sp,
-                color = Color.Gray
+                color = Color.Gray,
+                style = MaterialTheme.typography.titleSmall
             )
             Box {
                 Icon(

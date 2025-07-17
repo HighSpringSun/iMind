@@ -87,11 +87,11 @@ fun PullRefreshLazyColumn() {
                             .height(160.dp),
                         contentAlignment = Alignment.TopCenter
                     ) {
-                        Text(
-                            text = "到底了..",
-                            color = MaterialTheme.colorScheme.onSurface,
-                            style = MaterialTheme.typography.titleSmall
-                        )
+//                        Text(
+//                            text = "到底了..",
+//                            color = MaterialTheme.colorScheme.onSurface,
+//                            style = MaterialTheme.typography.titleSmall
+//                        )
                     }
                 }
             }

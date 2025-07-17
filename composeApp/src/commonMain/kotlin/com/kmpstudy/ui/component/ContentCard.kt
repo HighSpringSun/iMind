@@ -58,7 +58,6 @@ fun ContentCard(records: Record) {
     AnimatedVisibility(
         visible = !isDel,
     ) {
-
         Box(
             modifier = Modifier
                 .padding(8.dp)
@@ -110,7 +109,7 @@ fun ContentCard(records: Record) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(6.dp),
+                            .padding(16.dp),
                         verticalArrangement = Arrangement.SpaceBetween,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
