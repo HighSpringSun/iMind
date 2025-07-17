@@ -132,7 +132,8 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true // 启用资源压缩
         }
     }
     compileOptions {
