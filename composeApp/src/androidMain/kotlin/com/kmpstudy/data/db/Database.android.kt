@@ -7,7 +7,7 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.kmpstudy.Database
 
 @SuppressLint("StaticFieldLeak")
-var context: Context? = null
+lateinit var context: Context
 
 actual class DriverFactory {
 

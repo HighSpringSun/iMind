@@ -89,6 +89,7 @@ kotlin {
             implementation("io.github.oshai:kotlin-logging:7.0.7")
             implementation("app.cash.sqldelight:coroutines-extensions:2.1.0")
             implementation("org.kodein.di:kodein-di-framework-compose:7.26.1")
+            implementation("com.russhwolf:multiplatform-settings:1.3.0")
 
             // icons
             implementation(libs.composeIcons.tablerIcons)

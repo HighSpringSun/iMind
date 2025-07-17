@@ -79,7 +79,7 @@ fun Logo() {
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
                 modifier = Modifier
-                    .width(40.dp)
+                    .width(80.dp)
             ) {
                 Text("123")
                 Text("123")

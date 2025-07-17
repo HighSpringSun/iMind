@@ -1,5 +1,6 @@
 package com.kmpstudy
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,10 +19,9 @@ class MainActivity : ComponentActivity(), DIAware {
             bindSingleton<Context> { this@MainActivity.applicationContext }
         }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         context = this.applicationContext
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             AndroidApp()
