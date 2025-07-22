@@ -1,6 +1,8 @@
 package com.kmpstudy.ui.page
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +33,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmpstudy.LocalNavController
 import compose.icons.EvaIcons
 import compose.icons.TablerIcons
 import compose.icons.evaicons.Outline
@@ -41,6 +44,7 @@ import compose.icons.tablericons.Power
 import compose.icons.tablericons.Search
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DrawerContent() {
     // 抽屉内容区域，这里可自定义要显示的布局，比如你截图里的用户信息、各类功能入口等
@@ -52,6 +56,7 @@ fun DrawerContent() {
             .verticalScroll(rememberScrollState())
             .padding(top = 24.dp, start = 16.dp, end = 16.dp)
     ) {
+        val navController = LocalNavController.current
         // 顶部用户栏
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -70,7 +75,15 @@ fun DrawerContent() {
             Spacer(Modifier.weight(1f))
             Icon(Icons.Default.Notifications, contentDescription = null, tint = Color.Gray)
             Spacer(Modifier.width(8.dp))
-            Icon(Icons.Default.Settings, contentDescription = null, tint = Color.Gray)
+            Icon(
+                Icons.Default.Settings,
+                contentDescription = null,
+                tint = Color.Gray,
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("SettingsPage")
+                    }
+            )
         }
 
         Spacer(Modifier.height(24.dp))

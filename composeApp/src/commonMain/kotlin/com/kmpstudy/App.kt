@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.kmpstudy.ui.page.MainPage
 import com.kmpstudy.ui.page.SearchPage
 import com.kmpstudy.di.di
+import com.kmpstudy.ui.page.SettingsPage
 import com.kmpstudy.ui.theme.AppTheme
 import org.kodein.di.compose.withDI
 
@@ -66,6 +67,20 @@ fun App() = withDI(di) {
                             this@SharedTransitionLayout,
                             this@composable
                         )
+                    }
+                    composable(
+                        "SettingsPage",
+                        enterTransition = {
+                            fadeIn()
+                        },
+                        exitTransition = {
+                            fadeOut()
+                        },
+                        popExitTransition = {
+                            fadeOut()
+                        }
+                    ) {
+                        SettingsPage()
                     }
                 }
             }
